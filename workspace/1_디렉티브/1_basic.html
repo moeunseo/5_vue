@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-text="data"></h1>
+        <div v-html="data2"></div>
+        <!-- <a v-bind:href="data3">깃허브 메인!</a> -->
+        <!-- 콜론자체가 v-bind를 의미! -->
+        <a :href="data3">깃허브 메인!</a>
+        <br>
+        <!-- 단방향 통신이기에 input에 value가 바뀌더라도
+        Vue인스턴스의 데이터는 변경되지 않는다! -->
+        <input type="text" :value="data4">
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let m = {
+        data: 'eunseo',
+        data2: `<a href="https://github.com/moeunseo/5_vue/tree/main">깃허브 이동!</a>`,
+        data3: 'https://github.com',
+        data4: '모은서'
+    }
+    let vm = Vue.createApp({
+        name: 'test',
+        data(){
+            return m;
+        }
+    }).mount('#app')
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="id" placeholder="ID"> -->
+        <!-- 한글 렌더링 문제 해결 -->
+        <!-- <input type="text" :value="id" placeholder="ID" @input="changeId"> -->
+        <!-- 수식어 lazy -->
+        <!-- 한글 렌더링 문제 해결 -->
+        <input type="text" v-model.lazy="id" placeholder="ID">
+        <p>입력한 아이디는 {{id}} 입니다.</p>
+        <div>
+            <h2>관심분야</h2>
+            <input type="checkbox" id="interA" value="Game" v-model="interesting">
+            <label for="interA">Game</label><br>
+            <input type="checkbox" id="interB" value="IT" v-model="interesting">
+            <label for="interB">IT</label><br>
+            <input type="checkbox" id="interC" value="Network" v-model="interesting">
+            <label for="interC">Network</label>
+        </div>
+        <p>관심분야: {{interesting.join(', ')}}</p>
+        <div>
+            <!-- name으로 묶어줘야함! -->
+            <h2>류호근 강사 강의 만족도</h2>
+            <input type="radio" id="radioA" value="5" v-model="score" name="score">
+            <label for="radioA">매우 만족</label><br>
+            <input type="radio" id="radioB" value="3" v-model="score" name="score">
+            <label for="radioB">보통</label><br>
+            <input type="radio" id="radioC" value="1" v-model="score" name="score">
+            <label for="radioC">불만족</label>
+        </div>
+        <p>강의 평점: {{score}}</p>
+
+        <div>
+            <h2>지금 먹고 싶은 음식</h2>
+            <select v-model="food">
+                <option value="">먹고 싶은 음식 선택</option>
+                <option value="치킨">치킨</option>
+                <option value="피자">피자</option>
+                <option value="족발">족발</option>
+                <option value="떡볶이">떡볶이</option>
+            </select>
+            <p>먹고 싶은 음식: {{food}}</p>
+        </div>
+
+        <div>
+            <h2>정보 제공 수신 동의</h2>
+            <input type="checkbox" id="agreement" v-model="agree" true-value="yes" false-value="no">
+            <label for="agreement">수신 동의 여부</label>
+        </div>
+        <p>마켓팅 수신 동의 여부: {{agree}}</p>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let vm = Vue.createApp({
+        name: 'test',
+        data(){
+            return{
+                id: '',
+                interesting: [], //체크박스는 여러 개의 값이 올 수 있기에 배열로 리턴!
+                score: '',
+                food: '',
+                agree: 'no'
+            }
+        },
+        methods: {
+            changeId(e){
+                this.id = e.target.value
+            }
+        },
+    }).mount('#app')
+</script>
+</html>
