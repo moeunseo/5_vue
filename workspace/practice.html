@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue조건문 practice</title>
+</head>
+<body>
+    <h1>Vue 조건문 연습을 해보자!</h1>
+    <!-- value값이 입력되었다면 그 값을 출력하고, 그렇지 않다면 출력x -->
+    <div id="app">
+        이름: <input type="text" v-model="name" placeholder="이름">
+        <br>
+        나이: <input type="text" v-model="age" placeholder="나이">
+
+        <p v-if="name!=''">이름은 {{name}} 입니다.</p>
+        <p v-if="age!=0">{{age}}살</p>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    const app = Vue.createApp({
+        name: 'test',
+        data(){
+            return{
+                name: '',
+                age: ''
+            }
+        },
+    }).mount('#app')
+</script>
+</html>

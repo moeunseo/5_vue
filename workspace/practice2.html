@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue practice</title>
+</head>
+<body>
+    <h1>클릭하면 카운트가 올라가고 내려가는 간단한 예제!</h1>
+    <div id="app">
+        <p>{{count}}회</p>
+        <input type="button" value="카운트업" v-on:click="countUp">
+        <input type="button" value="카운트다운" v-on:click="countDown">
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    const app = Vue.createApp({
+        name: 'test',
+        data(){
+            return{
+                count: 0
+            }
+        },
+        methods: {
+            countUp: function(){
+                this.count++
+            },
+            countDown: function(){
+                if(this.count <= 0){
+                    alert('0이하는 나타낼 수 없어!')
+                    this.count = 0
+                }
+                else{
+                    this.count--
+                }
+            } 
+        }
+    }).mount('#app')
+</script>
+</html>
