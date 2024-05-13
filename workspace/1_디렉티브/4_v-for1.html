@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복 렌더링 디렉티브1</title>
+</head>
+<body>
+    <div id="app">
+        <h2>반복 렌더링 테스트</h2>
+        <ul>
+            <!-- foreach문이라고 생각! -->
+            <!-- <li v-for="(item,index) in items" :key="index">
+                {{index}} : {{item}}
+            </li> -->
+            <li v-for="item in items" :key="num">
+                {{item.num}} : {{item.name}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return{
+                // items : ['모은서', '박지민', '홍길동', '장보고', '전우치']
+                items: [
+                    {num:11, name:'모은서'},
+                    {num:201, name:'박지민'},
+                    {num:333, name:'홍길동'},
+                    {num:44, name:'장보고'},
+                    {num:55, name:'전우치'}
+                ]
+            }
+        }
+    }).mount('#app')
+</script>
+</html>
