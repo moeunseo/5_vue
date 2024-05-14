@@ -11,7 +11,7 @@
         <ul>
           <li v-for="c in contacts">{{c.name}} : {{c.tel}}</li>
         </ul>
-        <div v-show="isLoading">검색중</div>
+        <div v-show="isLoading">검색 중</div>
       </div>
 </body>
 <script src="https://unpkg.com/vue"></script>
@@ -21,6 +21,7 @@
 <script src="https://unpkg.com/lodash"></script>
 
 <script>
+  /* 외부API root 디렉토리*/
     const BASEURL = 'https://contactsvc.bmaster.kro.kr';
     let vm = Vue.createApp({
         name:'test',
@@ -29,8 +30,8 @@
                 name : "", contacts : [], isLoading:false
             }
         },
-        watch: {
-          name(current) { // name 속성을 관찰하여 값이 변경될 때마다 호출되는 핸들러
+        watch: { // 비동기 통신을 할 때 사용
+          name(current) { // name 속성을 관찰하여 입력된 값이 변경될 때마다 호출되는 핸들러
             if (current.length >= 2) {
               this.fetchContacts(); // 두 글자 이상일 때 메소드 호출
             } else {
@@ -40,6 +41,7 @@
         },
         methods: {
           fetchContacts: _.debounce(function () { 
+            /* 검색 중을 띄우는 것이 0.3초 걸린다! */
             this.isLoading = true;
 
             axios.get(BASEURL + `/contacts_long/search/${this.name}`).then((response) => {
