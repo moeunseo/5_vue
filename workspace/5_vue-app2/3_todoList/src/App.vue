@@ -24,6 +24,8 @@ import InputCom from './components/InputCom.vue'
     components: {TodoList, InputCom},
     created() {
       this.emitter.on('add', this.addTodo)
+      this.emitter.on('deleteId', this.todoDelete)
+      this.emitter.on('CompletedId', this.toggleCompleted)
     },
     data(){
         return {
@@ -38,7 +40,6 @@ import InputCom from './components/InputCom.vue'
         // 1. 추가하기
         addTodo(todo){
             this.todoList.push({id: i++, plan: todo, completed: false})
-            this.todo = ''
         },
         // 2. 삭제하기
         // filter, 해당 id가 아닌 것만 남기기
