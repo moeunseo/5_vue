@@ -8,11 +8,12 @@
 <body>
     <div id="app">
         이름 : <input type="text" v-model.trim="name" placeholder="영문 두글자 이상을 입력하세요" /><br />
-        <ul>
-          <li v-for="c in contacts">{{c.name}} : {{c.tel}}</li>
+        <ul v-if="contacts.length > 0">
+          <li v-for="c in contacts">{{c.name}} {{c.tel}} {{c.address}}</li>
         </ul>
-        <div v-show="isLoading">검색 중</div>
-      </div>
+        <p v-else-if="!isLoading && name.length>=2">검색 결과가 없습니다.</p>
+        <div v-if="isLoading">검색 중</div>
+    </div>
 </body>
 <script src="https://unpkg.com/vue"></script>
 <!-- 내외부 url 을 요청할 수 있다. -->
@@ -27,7 +28,11 @@
         name:'test',
         data() {
             return {
-                name : "", contacts : [], isLoading:false
+                name : "",
+                contacts : [], 
+                isLoading:false,
+                // 에러 발생 시 메시지 추가
+                error: null
             }
         },
         watch: { // 비동기 통신을 할 때 사용
@@ -36,6 +41,7 @@
               this.fetchContacts(); // 두 글자 이상일 때 메소드 호출
             } else {
               this.contacts = []; // 아니면 비워버리기
+              this.error = null;
             }
           },
         },
@@ -44,10 +50,25 @@
             /* 검색 중을 띄우는 것이 0.3초 걸린다! */
             this.isLoading = true;
 
-            axios.get(BASEURL + `/contacts_long/search/${this.name}`).then((response) => {
-              this.isLoading = false;
-              this.contacts = response.data;
-            });
+            // axios.get(BASEURL + `/contacts_long/search/${this.name}`).then((response) => {
+            //   this.isLoading = false;
+            //   this.contacts = response.data;
+            // });
+
+            this.error = null; // 에러 상태 초기화
+
+            // 에러 발생 시 try-catch문을 사용하여 사용자에게 어떠한 상황인지 인식시켜주기
+            axios.get(`${BASEURL}/contacts_long/search/${this.name}`)
+                .then((response) => {
+                    this.contacts = response.data;
+                })
+                .catch((error) => {
+                    this.error = "데이터를 가져오는 중 문제가 발생했습니다.";
+                    console.error(error);
+                })
+                .finally(() => {
+                    this.isLoading = false;
+                });
           }, 300),
         },
     }).mount('#app');

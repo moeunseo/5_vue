@@ -12,7 +12,6 @@ import App from './App2.vue'
 // 라이브러리 가져오기
 // 라이브러리를 사용하기 위해선 app을 생성할 때마다 npm install mitt를 해줘야 한다.
 import mitt from 'mitt'
-
 // 에미터 인스턴스 생성
 const emitter = mitt()
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 버블링 실습</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.trim="testText" placeholder="입력하시오">
+        <button @click="contentsList">추가</button>
+        <!-- 버블링을 이용한 인덱스 삭제 -->
+        <ul v-if="contents.length > 0" @click="deleteIndex">
+            <li v-for="(content, index) in contents">{{content}}
+                <button class="delete" :data-index="index">삭제</button>
+            </li>
+            <button @click="clearAll">전부 삭제</button>
+        </ul>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                testText: "",
+                contents: []
+            }
+        },
+
+        methods: {
+            // 입력한 값을 배열에 추가
+            contentsList(){
+                if(this.testText.length > 0){
+                    this.contents.push(this.testText)
+                    this.testText = ""
+                }
+            },
+
+            // 버블링을 적용한 삭제 이벤트
+            deleteIndex(){
+                if(event.target.classList.contains("delete")){
+                    const index = event.target.dataset.index
+                    this.contents.splice(index, 1)
+                }
+            },
+            
+            // 배열 초기화
+            clearAll(){
+                this.contents = []
+            }
+        },
+    }).mount('#app')
+</script>
+</html>

@@ -9,6 +9,8 @@
     <div id="app">
         1보다 큰 수: <input type="text" v-model.number="num">
         <br>
+        <!--computed속성이 아닌 methods로 부른다면 
+            함수이기 때문에 함수 형식으로 호출해야함 -->
         1부터 입력한 값까지의 합:<span>{{sum()}}</span><br>
         1부터 입력한 값까지의 합:<span>{{sum()}}</span><br>
         1부터 입력한 값까지의 합:<span>{{sum()}}</span><br>

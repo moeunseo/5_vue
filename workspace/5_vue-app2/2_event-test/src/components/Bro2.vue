@@ -1,6 +1,6 @@
 <template lang="">
      <div>
-        <h1>받음ㅋ 브로~!</h1>
+        <h1>받음ㅋ 브로1~!</h1>
 
         <h3>받은 데이터: {{receiveData}}</h3>
     </div>

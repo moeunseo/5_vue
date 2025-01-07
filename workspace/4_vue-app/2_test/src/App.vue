@@ -1,11 +1,10 @@
 <template>
-  <!-- <CheckboxItem /> -->
-  <h1>App 테스트</h1>
+  <h1 style="text-align: center;">App 테스트</h1>
   <ul>
     <CheckboxItem />
+    <!-- <CheckboxItem />
     <CheckboxItem />
-    <CheckboxItem />
-    <CheckboxItem />
+    <CheckboxItem /> -->
   </ul>
 </template>
 <script>

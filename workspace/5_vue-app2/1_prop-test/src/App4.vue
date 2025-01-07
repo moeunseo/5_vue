@@ -17,7 +17,7 @@ import User from './user.js'
         users: [
           // 값을 넘기지 않으면 undefined로 정의! 즉, false값
           new User(1, '모은서', true),
-          new User(2, '박지민'),
+          new User(2, '김원필'),
           new User(3, '이창섭', true),
           new User(4, '육성재')
         ]

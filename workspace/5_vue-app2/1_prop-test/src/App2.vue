@@ -15,7 +15,7 @@ import CheckboxItem from './components/CheckboxItem2.vue'
       return{
         users: [
           {number: 1, name: '모은서', checked: true},
-          {number: 2, name: '박지민'},
+          {number: 2, name: '김원필'},
           {number: 3, name: '이창섭', checked: true},
           {number: 4, name: '육성재'}
         ]
